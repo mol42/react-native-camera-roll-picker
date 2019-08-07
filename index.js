@@ -131,6 +131,10 @@ class CameraRollPicker extends Component {
     }
 
     CameraRoll.getPhotos(fetchParams)
+      .then((response) => {
+        response.edges.sort((a, b) => b.node.timestamp - a.node.timestamp);
+        return response;
+      })
       .then(data => this.appendImages(data), e => console.log(e));
   }
 
